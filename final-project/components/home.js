@@ -5,10 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Post from "./Post";
 
 export default function HomePage(){
-    
-
     const [posts, setPosts] = useState([])
 
+    // function to fetch all posts from supabase
     async function fetchPosts(){
         const { data } = await supabase.from("post").select();
         // Currently sorting by the date created but eventually want to give options by sorting by date or upvotes
@@ -18,9 +17,9 @@ export default function HomePage(){
             post.created_at = time;
         })
         setPosts(data);
-        console.log("data: ", data);
     }
 
+    // function to make time appear in 'x hours ago' or 'y days ago'
     function getElapsedTime(dateString) {
         const now = new Date();
         const posted = new Date(dateString);

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Nav(){
     const session = useSession()
-
+    
     async function signOut(e) {
         e.preventDefault();
         try {
