@@ -13,6 +13,8 @@
   --dark-grey: #24232C;
   --black: #18171F;
   --grey: #A4A4A4;
+  --yellow: #F8CD65;
+  --close-white: #E6E5EA;
 }
 
 body{
@@ -40,6 +42,14 @@ input {
   background-color: #18171F;
 }
 
+textarea {
+  background-color: #18171F;
+}
+
+option {
+  background-color: #18171F;
+}
+
 #login{
   background-color: var(--dark-grey);
 }
@@ -50,4 +60,20 @@ input {
 
 #navWidth{
   width: 1024px;
+}
+
+#signOut{
+  background: var(--red);
+}
+
+.post{
+  background-color: var(--dark-grey);
+}
+
+.upvotes{
+  color: var(--yellow);
+}
+
+.text{
+  color: var(--close-white);
 }

@@ -19,8 +19,9 @@ export default function LoginPage() {
           email: email,
           password: password,
         });
+        toast.success("Logged in successfully!");
         clearInputsAndStates();
-        router.push('/homePage')
+        router.push('/homePage');
         if (resp.error) throw resp.error;
         const userId = data.user.id;
         console.log(userId);
@@ -41,10 +42,10 @@ export default function LoginPage() {
   return (
     <div className="flex justify-center items-center">
       <div
-        className="xl:w-2/12 md:w-5/12 flex flex-col h-2/6 rounded-lg absolute md:top-1/3 xl:top-1/3 items-center"
+        className="2xl:w-2/12 xl:w-4/12 md:w-5/12 flex flex-col py-8 xl:h-fit h-2/6 rounded-lg absolute md:top-1/3 xl:top-1/4 items-center"
         id="login"
       >
-        <p className="text-4xl w-9/12 font-bold float-left mt-8">Login</p>
+        <p className="text-4xl w-9/12 font-bold float-left">Login</p>
         <p className="text-xl w-9/12 float-left font-medium text-slate-400 mt-2">
           Sign in to your account to continue{" "}
         </p>
@@ -81,7 +82,7 @@ export default function LoginPage() {
             LOGIN
           </button>
         </form>
-        <Link href={'/signup'} className="mt-2 text-slate-400">Don't have an account? Click here to make one</Link>
+        <Link href={'/auth/signup'} className="mt-2 text-slate-400">Don't have an account? Click here to make one</Link>
       </div>
       <ToastContainer
         position="top-center"

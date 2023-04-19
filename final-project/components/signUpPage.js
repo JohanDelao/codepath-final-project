@@ -36,10 +36,10 @@ export default function SignUpPage() {
   return (
     <div className="flex justify-center items-center">
       <div
-        className="xl:w-2/12 md:w-5/12 flex flex-col h-2/6 rounded-lg absolute md:top-1/3 xl:top-1/3 items-center"
+        className="2xl:w-2/12 xl:w-4/12 md:w-5/12 flex flex-col py-8 h-fit h-2/6 rounded-lg absolute md:top-1/3 2xl:top-1/3 xl:top-1/4 items-center"
         id="login"
       >
-        <p className="text-4xl w-9/12 font-bold float-left mt-8">Sign Up</p>
+        <p className="text-4xl w-9/12 font-bold float-left">Sign Up</p>
         <p className="text-xl w-9/12 float-left font-medium text-slate-400 mt-2">
           Make an account with us!{" "}
         </p>
