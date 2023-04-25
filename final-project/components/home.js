@@ -18,17 +18,51 @@ const HomePage = () => {
   const session = useSession();
   const userID = session.user.id;
 
+  const dropDown = document.getElementById("dropDownFilter")
+
+  const teamOptions = [
+    "None",
+    "Atlanta Hawks",
+    "Boston Celtics",
+    "Brooklyn Nets",
+    "Charlotte Hornets",
+    "Chicago Bulls",
+    "Cleveland Cavaliers",
+    "Dallas Mavericks",
+    "Denver Nuggets",
+    "Detroit Pistons",
+    "Golden State Warriors",
+    "Houston Rockets",
+    "Indiana Pacers",
+    "LA Clippers",
+    "LA Lakers",
+    "Memphis Grizzlies",
+    "Miami Heat",
+    "Milwaukee Bucks",
+    "Minnesota Timberwolves",
+    "New Orleans Hornets",
+    "New York Knicks",
+    "Oklahoma City Thunder",
+    "Orlando Magic",
+    "Philadelphia Sixers",
+    "Phoenix Suns",
+    "Portland Trail Blazers",
+    "Sacramento Kings",
+    "San Antonio Spurs",
+    "Toronto Raptors",
+    "Utah Jazz",
+    "Washington Wizards",
+  ];
+
   // function to fetch all posts from supabase
   async function fetchPosts() {
     const { data } = await supabase.from("post").select();
     // Currently sorting by the date created but eventually want to give options by sorting by date or upvotes
     let temp = data;
-    let time = temp.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    let time = temp.sort(
+      (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    );
     setPosts(time);
-    // console.log(temp)
-    // let upvotes = temp.sort((a, b) => b.upvotes - a.upvotes);
-    // setUpvotePosts(upvotes);
-    // console.log(temp)
   }
 
   const getUserName = async () => {
@@ -52,16 +86,33 @@ const HomePage = () => {
 
   const filterUpvotesFunction = () => {
     let temp = posts;
-    let upvotes = temp.sort((a, b) => b.upvotes - a.upvotes)
+    let upvotes = temp.sort((a, b) => b.upvotes - a.upvotes);
     setPostsUpvotes(upvotes);
-    setFilterUpvotes(true)
-  }
+    setFilterUpvotes(true);
+    dropDown.value = "None"
+  };
 
   const filterRecentFunction = () => {
     let temp = posts;
-    let recent = temp.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    setFilterUpvotes(false)
-    setPosts(recent)
+    let recent = temp.sort(
+      (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    );
+    setFilterUpvotes(false);
+    setPosts(recent);
+    dropDown.value = "None"
+  };
+
+  const filterEventFunction = (e) => {
+    if(e.target.value == "None"){
+      console.log("nothing")
+    }else{
+      let temp = posts;
+      let temp2 = temp.filter((post) => {
+        return post.teams.includes(e.target.value);
+      })
+      setPostsUpvotes(temp2)
+      setFilterUpvotes(true)
+    }
   }
 
   const insertUserName = async () => {
@@ -133,6 +184,21 @@ const HomePage = () => {
           >
             Most Popular
           </button>
+          <select
+            required
+            name="dropdownOne"
+            id="dropDownFilter"
+            className="w-50 h-9 bg-transparent border-solid border-slate-200 border-2 rounded pl-2 mb-6 pr-2"
+            onChange={(e) => filterEventFunction(e)}
+          >
+            {teamOptions.map((option) => {
+              return (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              );
+            })}
+          </select>
         </div>
         {!filterUpvotes
           ? posts.map((post) => {

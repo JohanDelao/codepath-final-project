@@ -26,6 +26,8 @@ export default function SignUpPage() {
           clearInputsAndStates();
           router.push('/homePage')
         }
+      }else{
+        throw error;
       }
     } catch (error) {
         toast.error('Something went wrong, try again!')
