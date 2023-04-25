@@ -4,7 +4,7 @@ Submitted by: **Johan Delao**
 
 This web app: **A place where NBA fans can see their favorite fans**
 
-Time spent: **X** hours spent in total
+Time spent: **12** hours spent in total
 
 ## Required Features
 
