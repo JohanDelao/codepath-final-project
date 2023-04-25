@@ -36,6 +36,7 @@ a {
 button {
   background-color: var(--dark-blue);
   font-family: var(--main-font);
+  cursor: pointer;
 }
 
 input {
@@ -74,6 +75,161 @@ option {
   color: var(--yellow);
 }
 
+.upvote{
+  background: var(--black);
+}
+
 .text{
   color: var(--close-white);
+}
+
+#options-menu:hover {
+  background-color: var(--black);
+}
+
+#cancel{
+  background-color: var(--red);
+}
+
+.Boston{
+  background-color: #007A33;
+}
+
+.Golden{
+  color: #014270;
+  background: #fdb927;
+}
+
+.Brooklyn {
+  background-color: #000000;
+}
+
+.Atlanta {
+  background: #e03a3e;
+}
+
+.Charlotte {
+  background: #1d1160;
+}
+
+.Chicago {
+  background: #ce1141;
+}
+
+.Cleveland {
+  background: #041e42;
+}
+
+.Denver{
+  background: #0e2240;
+  color: #fec524;
+}
+
+.Mavericks {
+  background: #00285e;
+}
+
+.Detroit{
+  background: #c8102e;
+}
+
+.Houston {
+  background: #ce1141;
+}
+
+.Indiana {
+  color: #002d62;
+  background: #fdbb30;
+}
+
+.Clippers {
+  background: #1d428a;
+}
+
+.Lakers {
+  background: #fdb927;
+}
+
+.Memphis {
+  background: #12173f;
+  color: #5d76a9;
+}
+
+.Miami {
+  background: #98002e;
+  color: black;
+}
+
+.Bucks {
+  background: #00471b;
+}
+
+.Minnesota{
+  background: #0c2340;
+}
+
+.Pelicans{
+  background: #002b5c;
+}
+
+.Knicks{
+  background: #006bb6;
+  color: #f58426;
+}
+
+.Oklahoma {
+  background: #002d62;
+}
+
+.Orlando{
+  color: #0077c0;
+  background: white;
+}
+
+.Philadelphia{
+  background: #006bb6;
+}
+
+.Phoenix {
+  background: #e56020;
+}
+
+.Portland{
+  background: #e03a3e;
+}
+
+.Sacramento{
+  background: #5a2b81;
+}
+
+.Spurs{
+  background: #000000;
+  color: #c4ced4;
+}
+
+.Toronto{
+  background: #ce1141;
+}
+
+.Utah{
+  background: #002b5c;
+  color: #f9a01b;
+}
+
+.Washington{
+  background: #002b5c;
+  color: #c4ced4;
+}
+
+.filters {
+  background-color: var(--orange);
+}
+
+dialog::backdrop {
+  background-color: hsl(248, 15%, 11%, 0.8);
+}
+
+dialog{
+  background: var(--dark-grey);
+  border: 1px solid var(--dark-grey);
 }

@@ -4,14 +4,17 @@ import { useSession } from "@supabase/auth-helpers-react";
 import Link from "next/link";
 import { supabase } from "@/client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Nav(){
     const session = useSession()
+    const router = useRouter()
     
     async function signOut(e) {
         e.preventDefault();
         try {
             const resp = await supabase.auth.signOut()
+            router.push('/homePage')
             if (resp.error) throw resp.error;
           } catch {
 

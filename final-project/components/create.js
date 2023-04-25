@@ -64,7 +64,7 @@ const Create = ({userID}) => {
   return (
     <div className="flex justify-center items-center">
       <div
-        className=" 2xl:w-3/12 xl:w-5/12 md:w-5/12 flex flex-col py-10 xl:h-fit h-2/6 rounded-lg absolute md:top-1/4 2xl:top-1/3 items-center"
+        className=" 2xl:w-3/12 xl:w-5/12 md:w-5/12 flex flex-col py-10 xl:h-fit h-2/6 rounded-lg absolute md:top-1/3 xl:top-1/4 items-center"
         id="login"
       >
         <p className="text-4xl w-9/12 font-bold float-left">Create a Post!</p>
@@ -75,7 +75,7 @@ const Create = ({userID}) => {
               type="text"
               name="title"
               id="title"
-              className="w-9/12 text-xl flex rounded-md h-14 pl-2 mx-auto"
+              className="w-9/12 text-xl flex rounded-md h-14 p-2 mx-auto"
               placeholder="Title"
               required
               onChange={(e) => setTitle(e.target.value)}
@@ -90,13 +90,13 @@ const Create = ({userID}) => {
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
           </div>
-          <div className="w-9/12 flex justify-between items-center mt-6 mx-auto">
+          <div className="w-9/12 max-w-[9/12] flex justify-between items-center mt-6 mx-auto">
             <select
               id="dropdownTwo"
               required
               name="dropdownOne"
               onChange={handleChangeOne}
-              className="lg:w-56 w-56 h-14 bg-transparent border-solid border-slate-200 border-2 rounded pl-2 mb-6 pr-2"
+              className="2xl:w-56 w-48 h-14 bg-transparent border-solid border-slate-200 border-2 rounded pl-2 mb-6 pr-2"
             >
               {teamOptions.map((option) => {
                 return (
@@ -110,7 +110,7 @@ const Create = ({userID}) => {
               id="dropdownOne"
               required
               name="dropdownTwo"
-              className="lg:w-56 w-56 h-14 bg-transparent border-solid border-slate-200 border-2 rounded pl-2 mb-6"
+              className="2xl:w-56 w-48 h-14 bg-transparent border-solid border-slate-200 border-2 rounded pl-2 mb-6"
               onChange={(e) => setTeamTwo(e.target.value)}
             >
               {teamOptions.map((option) => {

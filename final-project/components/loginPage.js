@@ -18,11 +18,11 @@ export default function LoginPage() {
         const resp = await supabase.auth.signInWithPassword({
           email: email,
           password: password,
-        });
+        }); 
+        if (resp.error) throw resp.error;
         toast.success("Logged in successfully!");
         clearInputsAndStates();
         router.push('/homePage');
-        if (resp.error) throw resp.error;
         const userId = data.user.id;
         console.log(userId);
         

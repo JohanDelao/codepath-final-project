@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 export default function SignUpPage() {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+  const [profileName, setProfileName] = useState(undefined);
+  const [userID, setUserID] = useState(undefined);
 
   async function signUpWithEmail(e) {
     e.preventDefault();
@@ -16,10 +18,14 @@ export default function SignUpPage() {
           email: email,
           password: password,
         });
-        toast.success("Check your email!");
-        clearInputsAndStates();
-        router.push('/homePage')
-        if (resp.error) throw resp.error;
+        console.log(resp)
+        if (resp.error != null || resp.data.user.identities.length == 0){
+          throw resp.error;
+        }else{
+          toast.success("Check your email!");
+          clearInputsAndStates();
+          router.push('/homePage')
+        }
       }
     } catch (error) {
         toast.error('Something went wrong, try again!')
@@ -36,7 +42,7 @@ export default function SignUpPage() {
   return (
     <div className="flex justify-center items-center">
       <div
-        className="2xl:w-2/12 xl:w-4/12 md:w-5/12 flex flex-col py-8 h-fit h-2/6 rounded-lg absolute md:top-1/3 2xl:top-1/3 xl:top-1/4 items-center"
+        className="2xl:w-2/12 xl:w-4/12 md:w-5/12 flex flex-col py-8 h-fit h-2/6 rounded-lg absolute md:top-1/3 xl:top-1/4 items-center"
         id="login"
       >
         <p className="text-4xl w-9/12 font-bold float-left">Sign Up</p>
