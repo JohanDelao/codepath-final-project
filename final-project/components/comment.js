@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/client";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Comment = ({ cid, userID, time, content, postID }) => {
   const [userName, setUserName] = useState(undefined);
@@ -31,9 +33,13 @@ const Comment = ({ cid, userID, time, content, postID }) => {
   };
 
   const deleteComment = async () => {
-    await supabase.from("comments").delete().eq("id", cid);
-    handleToggle();
-    router.push(`/Post?post=${postID}`);
+    try{
+      await supabase.from("comments").delete().eq("id", cid);
+      handleToggle();
+      router.push(`/homePage`);
+    } catch (error) {
+      toast.error("Something went wrong! Try again")
+    }
   }
 
   useEffect(() => {
@@ -101,6 +107,18 @@ const Comment = ({ cid, userID, time, content, postID }) => {
                     )}
                   </div>
                 )}
+                 <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };

@@ -3,9 +3,7 @@ import { supabase } from "@/client";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Link from "next/link";
 import Upvote from "@/components/upvote";
-import { comment } from "postcss";
 import Comment from "@/components/comment";
 
 const Post = () => {

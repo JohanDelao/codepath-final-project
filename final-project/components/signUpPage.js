@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { supabase } from "@/client";
+import { useRouter } from "next/router";
+import { useSession } from "@supabase/auth-helpers-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+  const session = useSession();
+  const router = useRouter();
 
   async function signUpWithEmail(e) {
     e.preventDefault();
@@ -18,7 +22,7 @@ export default function SignUpPage() {
         });
         if (resp.data.user.identities.length == 0){
           throw "Already have an account, log in!";
-        }else if(resp.error != null){
+        }else if (resp.error != null){
           throw resp.error
         }else{
           toast.success("Check your email!");
@@ -38,6 +42,12 @@ export default function SignUpPage() {
         setEmail("");
         setPassword("");
   }
+
+  useEffect(() => {
+    if(session){
+      router.push('/homePage')
+    }
+  })
 
   return (
     <div className="flex justify-center items-center">
