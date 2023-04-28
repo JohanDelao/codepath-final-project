@@ -19,12 +19,12 @@ export default function LoginPage() {
           email: email,
           password: password,
         }); 
-        if (resp.error) throw resp.error;
-        toast.success("Logged in successfully!");
-        clearInputsAndStates();
-        router.push('/homePage');
-        const userId = data.user.id;
-        console.log(userId);
+        if (resp.error){
+          throw resp.error
+        } else {
+          clearInputsAndStates();
+          router.push('/homePage');
+        }
         
       }
     } catch (error) {
@@ -42,21 +42,21 @@ export default function LoginPage() {
   return (
     <div className="flex justify-center items-center">
       <div
-        className="2xl:w-2/12 xl:w-4/12 md:w-5/12 flex flex-col py-8 xl:h-fit h-2/6 rounded-lg absolute md:top-1/3 xl:top-1/4 items-center"
+        className="2xl:w-2/12 xl:w-4/12 lg:w-5/12 md:w-6/12 w-80 flex flex-col py-8 xl:h-fit lg:h-2/6 h-fit rounded-lg absolute md:top-1/4 lg:top-1/3 xl:top-1/4 top-1/4 items-center"
         id="login"
       >
-        <p className="text-4xl w-9/12 font-bold float-left">Login</p>
-        <p className="text-xl w-9/12 float-left font-medium text-slate-400 mt-2">
+        <p className="md:text-4xl text-3xl w-9/12 font-bold float-left">Login</p>
+        <p className="md:text-xl text-lg w-9/12 float-left font-medium text-slate-400 mt-2">
           Sign in to your account to continue{" "}
         </p>
-        <form className="w-full mt-10">
+        <form className="w-full md:mt-10 mt-4">
           <label htmlFor="email"></label>
           <div className="w-full mt-1">
             <input
               type="email"
               name="email"
               id="email"
-              className="w-9/12 text-xl flex rounded-md h-14 pl-2 mx-auto"
+              className="w-9/12 md:text-xl text-lg flex rounded-md h-14 pl-2 mx-auto"
               placeholder="Email Address"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -68,7 +68,7 @@ export default function LoginPage() {
               type="password"
               name="password"
               id="password"
-              className="w-9/12 text-xl flex rounded-md h-14 pl-2 mx-auto"
+              className="w-9/12 md:text-xl text-lg flex rounded-md h-14 pl-2 mx-auto"
               placeholder="Password"
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -76,13 +76,13 @@ export default function LoginPage() {
             ></input>
           </div>
           <button
-            className="w-9/12 h-14 text-xl justify-center items-center flex font-semibold mx-auto mt-6 rounded-md"
+            className="w-9/12 h-14 md:text-xl text-lg justify-center items-center flex font-semibold mx-auto mt-6 rounded-md"
             onClick={(e) => signInWithEmail(e)}
           >
             LOGIN
           </button>
         </form>
-        <Link href={'/auth/signup'} className="mt-2 text-slate-400">Don't have an account? Click here to make one</Link>
+        <Link href={'/auth/signup'} className="md:text-md text-base w-9/12 text-center md:mt-2 mt-4 text-slate-400">Don't have an account? Click here to make one</Link>
       </div>
       <ToastContainer
         position="top-center"

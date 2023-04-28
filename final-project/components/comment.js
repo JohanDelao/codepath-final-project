@@ -9,13 +9,21 @@ const Comment = ({ cid, userID, time, content, postID }) => {
   const router = useRouter();
 
   const getProfileName = async () => {
-    const { data } = await supabase.from("profiles").select().eq("id", userID);
-    setUserName(data[0].username);
+    try{
+      const { data } = await supabase.from("profiles").select().eq("id", userID);
+      setUserName(data[0].username);
+    } catch (error) {
+      router.push('/homePage')
+    }
   };
 
   const getUser = async () => {
-    const user = await supabase.auth.getUser();
-    setCurrentID(user.data.user.id);
+    try {
+      const user = await supabase.auth.getUser();
+      setCurrentID(user.data.user.id);
+    } catch (error) {
+      router.push('/homePage')
+    }
   };
 
   const handleToggle = () => {
@@ -25,7 +33,7 @@ const Comment = ({ cid, userID, time, content, postID }) => {
   const deleteComment = async () => {
     await supabase.from("comments").delete().eq("id", cid);
     handleToggle();
-    router.push(`/homePage`);
+    router.push(`/Post?post=${postID}`);
   }
 
   useEffect(() => {
@@ -34,17 +42,17 @@ const Comment = ({ cid, userID, time, content, postID }) => {
   }, []);
 
   return (
-    <div className="2xl:w-5/12 w-8/12 h-24 flex justify-between items-center bg-slate-500 rounded-lg post px-5 py-2">
-      <div className="flex flex-col w-11/12">
+    <div className="2xl:w-5/12 lg:w-8/12 md:w-10/12 w-11/12 md:h-24 h-fit flex justify-between items-center bg-slate-500 rounded-lg post px-5 md:py-2 py-4">
+      <div className="flex flex-col md:w-11/12 w-10/12">
         <div className="flex">
-          <p className="text-base font-bold mr-2">{userName}</p>
-          <p className="text-base text-slate-400 font-medium">{time}</p>
+          <p className="md:text-base text-sm font-bold mr-2">{userName}</p>
+          <p className="md:text-base text-sm text-slate-400 font-medium">{time}</p>
         </div>
-        <p className="text-lg font-medium text text-justify h-fit">{content}</p>
+        <p className="md:text-lg font-medium text text-justify h-fit md:mt-0 mt-1">{content}</p>
       </div>
       {currentID == userID && (
-                  <div className="relative inline-block text-left">
-                    <div className="flex items-center">
+                  <div className="relative inline-block text-left w-1/12">
+                    <div className="flex items-center justify-center">
                       <button
                         type="button"
                         className="inline-flex justify-center w-fit px-0.5 py-0.25 rounded-md text-sm font-medium text-gray-700 hover:bg-slate-400"

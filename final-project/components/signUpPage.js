@@ -7,8 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 export default function SignUpPage() {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
-  const [profileName, setProfileName] = useState(undefined);
-  const [userID, setUserID] = useState(undefined);
 
   async function signUpWithEmail(e) {
     e.preventDefault();
@@ -18,19 +16,19 @@ export default function SignUpPage() {
           email: email,
           password: password,
         });
-        console.log(resp)
-        if (resp.error != null || resp.data.user.identities.length == 0){
-          throw resp.error;
+        if (resp.data.user.identities.length == 0){
+          throw "Already have an account, log in!";
+        }else if(resp.error != null){
+          throw resp.error
         }else{
           toast.success("Check your email!");
           clearInputsAndStates();
-          router.push('/homePage')
         }
       }else{
         throw error;
       }
     } catch (error) {
-        toast.error('Something went wrong, try again!')
+      toast.error(error)
     }
   }
 
@@ -44,11 +42,11 @@ export default function SignUpPage() {
   return (
     <div className="flex justify-center items-center">
       <div
-        className="2xl:w-2/12 xl:w-4/12 md:w-5/12 flex flex-col py-8 h-fit h-2/6 rounded-lg absolute md:top-1/3 xl:top-1/4 items-center"
+        className="2xl:w-2/12 xl:w-4/12 lg:w-5/12 md:w-6/12 w-80 flex flex-col py-8 h-fit h-2/6 rounded-lg absolute md:top-1/4 lg:top-1/3 xl:top-1/4 top-1/4 items-center"
         id="login"
       >
-        <p className="text-4xl w-9/12 font-bold float-left">Sign Up</p>
-        <p className="text-xl w-9/12 float-left font-medium text-slate-400 mt-2">
+        <p className="md:text-4xl text-3xl w-9/12 font-bold float-left">Sign Up</p>
+        <p className="md:text-xl text-lg w-9/12 float-left font-medium text-slate-400 mt-2">
           Make an account with us!{" "}
         </p>
         <form className="w-full mt-10">
@@ -58,7 +56,7 @@ export default function SignUpPage() {
               type="email"
               name="email"
               id="email"
-              className="w-9/12 text-xl flex rounded-md h-14 pl-2 mx-auto"
+              className="w-9/12 md:text-xl text-lg flex rounded-md h-14 pl-2 mx-auto"
               placeholder="Email Address"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -70,7 +68,7 @@ export default function SignUpPage() {
               type="password"
               name="password"
               id="password"
-              className="w-9/12 text-xl flex rounded-md h-14 pl-2 mx-auto"
+              className="w-9/12 md:text-xl text-lg flex rounded-md h-14 pl-2 mx-auto"
               placeholder="Password"
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -78,7 +76,7 @@ export default function SignUpPage() {
             ></input>
           </div>
           <button
-            className="w-9/12 h-14 text-xl justify-center items-center flex font-semibold mx-auto mt-6 rounded-md"
+            className="w-9/12 h-14 md:text-xl text-lg justify-center items-center flex font-semibold mx-auto mt-6 rounded-md"
             onClick={(e) => signUpWithEmail(e)}
           >
             SIGN UP

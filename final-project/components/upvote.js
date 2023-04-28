@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react"
 import { supabase } from "@/client"
+import { useRouter } from "next/router"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Upvote = ({pid}) => {
+const Upvote = ({alignUp, pid}) => {
     const [upvotes, setUpvotes] = useState(0)
-
+    const router = useRouter();
   
     const addUpvote = async (pid) => {
         try {
             await supabase.from("post").update({upvotes: upvotes + 1}).eq('id', pid)
             setUpvotes(upvotes+1)
         } catch (error) {
-            console.log(error)
+          toast.error("Something went wrong! Try again")
         }
     }
 
@@ -19,13 +22,17 @@ const Upvote = ({pid}) => {
             await supabase.from("post").update({upvotes: upvotes - 1}).eq('id', pid)
             setUpvotes(upvotes-1)
         }catch(error){
-            console.log(error)
+            toast.error("Something went wrong! Try again")
         }
     }
 
     const fetchUpvotes = async () => {
-      const data = await supabase.from("post").select('upvotes').eq('id', pid);
-      setUpvotes(data.data[0].upvotes)
+      try{
+        const data = await supabase.from("post").select('upvotes').eq('id', pid);
+        setUpvotes(data.data[0].upvotes)
+      } catch (error) {
+        router.push('/homePage')
+      }
     }
 
     useEffect(() => {
@@ -33,7 +40,7 @@ const Upvote = ({pid}) => {
     })
   
     return (
-    <div className="upvote w-10 rounded-md flex flex-col justify-around items-center h-4/5">
+    <div className={alignUp == true ? "upvote w-10 rounded-md flex flex-col justify-around items-center h-4/5" : "upvote md:w-10 w-20 rounded-md flex md:flex-col flex-row justify-around items-center h-4/5"}>
       <svg
         width="14"
         height="14"
@@ -49,7 +56,7 @@ const Upvote = ({pid}) => {
           className="hover:fill-green-500 fill-white"
         />
       </svg>
-      <p className="text-2xl font-bold cursor-default">{upvotes}</p>
+      <p className="md:text-2xl text-lg font-bold cursor-default">{upvotes}</p>
       <svg
         width="14"
         height="14"
