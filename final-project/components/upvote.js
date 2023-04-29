@@ -40,7 +40,7 @@ const Upvote = ({alignUp, pid}) => {
     })
   
     return (
-    <div className={alignUp == true ? "upvote w-10 rounded-md flex flex-col justify-around items-center h-4/5" : "upvote md:w-10 w-20 rounded-md flex md:flex-col flex-row justify-around items-center h-4/5"}>
+    <div className={alignUp == true ? "upvote w-10 rounded-md flex flex-col justify-around items-center h-4/5 md:max-h-full max-h-[120px]" : "upvote md:w-10 w-20 rounded-md flex md:flex-col flex-row justify-around items-center h-4/5"}>
       <svg
         width="14"
         height="14"

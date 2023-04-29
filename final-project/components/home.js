@@ -235,13 +235,13 @@ const HomePage = () => {
               let time = getElapsedTime(post.created_at);
               return (
                 <div
-                  className="2xl:w-5/12 lg:w-8/12 md:w-10/12 md:h-36 w-11/12 h-fit flex flex-col justify-around bg-slate-500 rounded-lg post px-5 py-2"
+                  className="2xl:w-5/12 lg:w-8/12 md:w-10/12 md:h-36 w-11/12 h-fit min-h-[112px] flex flex-col justify-around bg-slate-500 rounded-lg post px-5 py-2"
                   key={post.id}
                 >
-                  <div className="flex md:h-64 h-36 justify-between items-center">
+                  <div className="flex md:h-64 h-fit min-h-[112px] justify-between items-center">
                     <Link
                       href={`/Post?post=${post.id}`}
-                      className="flex flex-col justify-around h-36 w-11/12"
+                      className="flex flex-col justify-around h-fit min-h-[36] w-11/12"
                     >
                       <div>
                         <p className="md:text-base text-sm text-slate-400 font-medium">
@@ -281,7 +281,7 @@ const HomePage = () => {
                   className="2xl:w-5/12 lg:w-8/12 md:w-10/12 w-11/12 h-fit md:h-36 flex flex-col justify-around bg-slate-500 rounded-lg post px-5 py-2"
                   key={post.id}
                 >
-                  <div className="flex md:h-64 h-36 justify-between items-center">
+                  <div className="flex md:h-64 h-fit justify-between items-center">
                     <Link
                       href={`/Post?post=${post.id}`}
                       className="flex flex-col justify-around h-36 w-11/12"
