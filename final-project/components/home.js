@@ -78,7 +78,6 @@ const HomePage = () => {
         .eq("id", userID);
       const usernameStatus = resp.data[0].username;
       const dialog = document.getElementById("modal");
-      console.log(usernameStatus);
       if (usernameStatus == null) {
         if (!dialog.open) {
           dialog.showModal();
