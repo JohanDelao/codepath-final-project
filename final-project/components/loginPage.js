@@ -82,7 +82,7 @@ export default function LoginPage() {
             LOGIN
           </button>
         </form>
-        <Link href={'/auth/signup'} className="md:text-md text-base w-9/12 text-center md:mt-2 mt-4 text-slate-400">Don't have an account? Click here to make one</Link>
+        <Link href={'/auth/signup'} className="md:text-md text-base w-9/12 text-center md:mt-2 mt-4 text-slate-400">Dont have an account? Click here to make one</Link>
       </div>
       <ToastContainer
         position="top-center"

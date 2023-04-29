@@ -254,11 +254,12 @@ const HomePage = () => {
                           {post.teams &&
                             post.teams.map((team) => {
                               if (team == "None") {
-                                return <div></div>;
+                                return <div key={"None"}></div>;
                               } else {
                                 return (
                                   <p
                                     className={`md:text-xl text-md px-2 py-1 bg-slate-400 rounded-lg font-semibold w-fit ${team}`}
+                                    key={team}
                                   >
                                     {team}
                                   </p>
@@ -296,11 +297,12 @@ const HomePage = () => {
                           {post.teams &&
                             post.teams.map((team) => {
                               if (team == "None") {
-                                return <div></div>;
+                                return <div key={"None"}></div>;
                               } else {
                                 return (
                                   <p
                                     className={`md:text-xl text-md px-2 py-1 bg-slate-400 rounded-lg font-semibold w-fit ${team}`}
+                                    key={team}
                                   >
                                     {team}
                                   </p>

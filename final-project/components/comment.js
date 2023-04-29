@@ -48,7 +48,7 @@ const Comment = ({ cid, userID, time, content, postID }) => {
   }, []);
 
   return (
-    <div className="2xl:w-5/12 lg:w-8/12 md:w-10/12 w-11/12 md:h-24 h-fit flex justify-between items-center bg-slate-500 rounded-lg post px-5 md:py-2 py-4">
+    <div className="2xl:w-5/12 lg:w-8/12 md:w-10/12 w-11/12 md:h-24 h-fit flex justify-between items-center bg-slate-500 rounded-lg post px-5 md:py-2 py-4" key={cid}>
       <div className="flex flex-col md:w-11/12 w-10/12">
         <div className="flex">
           <p className="md:text-base text-sm font-bold mr-2">{userName}</p>

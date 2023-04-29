@@ -262,11 +262,12 @@ const Post = () => {
                   post.teams &&
                   post.teams.map((team) => {
                     if (team == "None") {
-                      return <div></div>;
+                      return <div key={"None"}></div>;
                     } else {
                       return (
                         <p
                           className={`md:text-xl text-md px-2 py-1 mr-2 bg-slate-400 rounded-lg font-semibold w-fit ${team}`}
+                          key={team}
                         >
                           {team}
                         </p>
@@ -465,6 +466,7 @@ const Post = () => {
                   time={getElapsedTime(comment.created_at)}
                   content={comment.content}
                   postID={pid}
+                  key={comment.id}
                 />
             );
           })}
