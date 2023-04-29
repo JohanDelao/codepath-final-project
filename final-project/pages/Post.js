@@ -17,6 +17,7 @@ const Post = () => {
   const [userID, setUserID] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [postUsername, setPostUsername] = useState("")
 
   // states for updated edited post to submit
   const [newTeamOne, setNewTeamOne] = useState("");
@@ -71,6 +72,7 @@ const Post = () => {
     try{
       const { data } = await supabase.from("post").select().eq("id", pid);
       setPost(data[0]);
+      getProfileName(data[0].user_id)
       setEditedPost(data[0]);
       setNewTeamOne(data[0].teams[0]);
       setNewTeamTwo(data[0].teams[1]);
@@ -158,6 +160,15 @@ const Post = () => {
     }
   };
 
+  const getProfileName = async (post_userid) => {
+    try{
+      const { data } = await supabase.from("profiles").select().eq("id", post_userid);
+      setPostUsername(data[0].username)
+    } catch (error) {
+      router.push('/homePage')
+    }
+  };
+
   const clearInputs = () => {
     document.getElementById("commentArea").value = "";
   };
@@ -201,9 +212,12 @@ const Post = () => {
         <div className="2xl:w-5/12 lg:w-8/12 md:w-10/12 w-11/12 h-fit flex md:flex-row flex-col justify-between items-center bg-slate-500 rounded-lg post md:px-5 px-2 py-2 mx-2">
           <div className="flex flex-col md:w-11/12 w-11/12">
             <div className="mt-2">
-              <p className="md:text-base text-sm text-slate-400 font-medium">
-                {"Posted " + getElapsedTime(post.created_at)}
-              </p>
+              <div className="flex">
+                <p className="md:text-base text-sm text-slate-400 font-medium">
+                  {"Posted " + getElapsedTime(post.created_at) + " by "}
+                </p>
+                <p className="md:text-base text-sm text-slate-400 font-bold ml-1">{postUsername}</p>
+              </div>
               <div className="flex justify-between items-center">
                 {edit ? (
                   <input
@@ -214,13 +228,13 @@ const Post = () => {
                     defaultValue={post.title}
                   ></input>
                 ) : (
-                  <p className="md:text-3xl text-2xl font-bold ">
+                  <p className="md:text-3xl text-2xl font-bold mt-1">
                     {post.title}
                   </p>
                 )}
               </div>
             </div>
-            <div className="my-4 w-full">
+            <div className="mt-4 w-full">
               {edit ? (
                 <textarea
                   rows={3}
@@ -241,7 +255,7 @@ const Post = () => {
                 className={
                   edit
                     ? "flex gap-2 items-center justify-between w-full"
-                    : "flex gap-2 flex-wrap items-center md:justify-center justify-between md:w-fit w-full"
+                    : "flex flex-wrap items-center md:justify-center justify-between md:w-fit w-full"
                 }
               >
                 {!edit ? (
@@ -252,7 +266,7 @@ const Post = () => {
                     } else {
                       return (
                         <p
-                          className={`md:text-xl text-md px-2 py-1 bg-slate-400 rounded-lg font-semibold w-fit ${team}`}
+                          className={`md:text-xl text-md px-2 py-1 mr-2 bg-slate-400 rounded-lg font-semibold w-fit ${team}`}
                         >
                           {team}
                         </p>
@@ -445,13 +459,13 @@ const Post = () => {
         {comments &&
           comments.map((comment) => {
             return (
-              <Comment
-                cid={comment.id}
-                userID={comment.user_id}
-                time={getElapsedTime(comment.created_at)}
-                content={comment.content}
-                postID={pid}
-              />
+                <Comment
+                  cid={comment.id}
+                  userID={comment.user_id}
+                  time={getElapsedTime(comment.created_at)}
+                  content={comment.content}
+                  postID={pid}
+                />
             );
           })}
         <div className="2xl:w-5/12 lg:w-8/12 md:w-10/12 w-11/12 h-24 flex justify-between items-center bg-slate-500 rounded-lg post px-5 py-2">
