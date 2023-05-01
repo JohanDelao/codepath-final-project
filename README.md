@@ -4,6 +4,8 @@ Submitted by: **Johan Delao**
 
 This web app: **A place where NBA fans can see their favorite fans**
 
+URL: https://codepath-final-project-paxbpmxb2-johandelao.vercel.app/homePage
+
 Time spent: **12** hours spent in total
 
 ## Required Features
